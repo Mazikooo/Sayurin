@@ -24,18 +24,40 @@
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+					<form method="post" action="<?php echo site_url('contact/saveContact'); ?>" onSubmit="return valid_datas( this );">
 							<p>
-								<input type="text" placeholder="Name" name="name" id="name">
-								<input type="email" placeholder="Email" name="email" id="email">
+								<input required type="text" placeholder="Name" name="name" id="name">
+								<input required type="email" placeholder="Email" name="email" id="email">
 							</p>
 							<p>
-								<input type="tel" placeholder="Phone" name="phone" id="phone">
-								<input type="text" placeholder="Subject" name="subject" id="subject">
+								<input required type="tel" placeholder="Phone" name="phone" id="phone">
+								<input required type="text" placeholder="Subject" name="subject" id="subject">
 							</p>
-							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
-							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><textarea required name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
+						
 							<p><input type="submit" value="Submit"></p>
+							<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+								
+									<?php if ($this->session->flashdata('success_message')): ?>
+										<script>
+								
+											Swal.fire({
+												icon: 'success',
+												title: 'Success!',
+												text: '<?php echo $this->session->flashdata('success_message'); ?>'
+											});
+										</script>
+									<?php elseif ($this->session->flashdata('error_message')): ?>
+										<script>
+									
+											Swal.fire({
+												icon: 'error',
+												title: 'Error!',
+												text: '<?php echo $this->session->flashdata('error_message'); ?>'
+											});
+										</script>
+									<?php endif; ?>
 						</form>
 					</div>
 				</div>
@@ -56,6 +78,8 @@
 		</div>
 	</div>
 	<!-- end contact form -->
+
+
 
 	<!-- find our location -->
 	<div class="find-location blue-bg">
