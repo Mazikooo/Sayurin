@@ -8,17 +8,6 @@ class Madmin extends CI_Model{
 		return $q;
 	}
 
-    /*public function cek_login($u, $p){
-        $q = $this->db->get_where('tb_admin', array('userName'=>$u));
-        $user = $q->row_array();
-
-        if ($user && password_verify($p, $user['password'])) {
-            return $q;
-        } else {
-            return false;
-        }
-    }*/
-
 
 	public function get_all_data($tabel){
 		$q=$this->db->get($tabel);
@@ -37,14 +26,6 @@ class Madmin extends CI_Model{
     }
 }
 
-
-
-  /*  public function insert($tabel, $data){
-        if (isset($data['password'])) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        }
-        $this->db->insert($tabel, $data);
-    }*/
 
 	public function insert($tabel, $data){
 		$this->db->insert($tabel, $data);
@@ -143,10 +124,7 @@ public function cek_loginmember($u,$p){
     return $q;
 }
 
-public function cek_loginpenjual2($u,$p){
-    $q = $this->db->get_where('tbl_penjual',array('username'=>$u,'password'=>$p));
-    return $q;
-}
+
 
 public function cek_loginpenjual($u, $p) {
     $q = $this->db->get_where('tbl_penjual', array('Username' => $u, 'Password' => $p));
@@ -280,10 +258,10 @@ public function get_all_kat() {
         $this->db->where($where);
         $this->db->update($table, $data);
     }
-
-    public function insert_template($data){
-        
-        $this->db->insert('tb_template', $data);
+	
+public function saveContact($data) {
+       
+        return $this->db->insert('tbl_contact', $data);
     }
 
     public function insert_member($data){
